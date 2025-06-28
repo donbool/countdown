@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && npm run build:main -- --watch & electron .\"",
     "build:main": "tsc --project tsconfig.main.json",
-    "build": "vite build && npm run build:main && electron-builder",
+    "build": "vite build",
+    "dist": "electron-builder",
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -44,5 +45,20 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "uuid": "^11.1.0"
+  },
+  "build": {
+    "appId": "com.yourname.countdown",
+    "productName": "Countdown",
+    "files": [
+      "dist/**/*",
+      "src/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    }
   }
 }
