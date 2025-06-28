@@ -1,3 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
-@tailwind utilities; 
+@tailwind utilities;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Fira Mono', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+  background: #232347;
+  color: #e5e5e5;
+  transition: background 0.3s, color 0.3s;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #23272e;
+}
+::-webkit-scrollbar-thumb {
+  background: #2d3238;
+  border-radius: 4px;
+}
+
+.traffic-lights {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 1.5rem;
+  margin-left: 0.2rem;
+}
+.traffic-light {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 2px #0008;
+}
+.traffic-light.red { background: #ff5f56; border: 1.5px solid #d80015; }
+.traffic-light.yellow { background: #ffbd2e; border: 1.5px solid #b97d10; }
+.traffic-light.green { background: #27c93f; border: 1.5px solid #128622; }
+
+.mac-titlebar {
+  height: 32px;
+  width: 100%;
+  -webkit-app-region: drag;
+  background: #23272e;
+  user-select: none;
+  z-index: 1000;
+  position: relative;
+}
+
+.terminal-navbar {
+  background: #23272e;
+  color: #39ff14;
+  font-family: 'Fira Mono', monospace;
+  font-size: 1.1rem;
+  border-bottom: 2px solid #39ff14;
+  letter-spacing: 0.02em;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  user-select: none;
+}
+
+.blink {
+  animation: blink 1s steps(2, start) infinite;
+}
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+.terminal-btn {
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.95rem;
+  padding: 0.4rem 1.1rem;
+  border-radius: 0.5rem;
+  background: #181a1b;
+  color: #39ff14;
+  border: 1.5px solid #39ff14;
+  text-transform: lowercase;
+  letter-spacing: 0.01em;
+  margin-right: 0.5rem;
+  transition: box-shadow 0.2s, border-color 0.2s, color 0.2s;
+  box-shadow: 0 0 0 #39ff14;
+}
+.terminal-btn:hover, .terminal-btn:focus {
+  border-color: #00fff7;
+  color: #00fff7;
+  box-shadow: 0 0 8px #00fff7;
+  outline: none;
+}
+
+.terminal-card {
+  background: #23272e;
+  border: 1.5px solid #39ff14;
+  border-radius: 0.6rem;
+  box-shadow: 0 2px 12px 0 #000a;
+  padding: 1.2rem 1.5rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  margin-bottom: 1.2rem;
+  font-family: 'Fira Mono', monospace;
+  color: #e5e5e5;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.terminal-card:hover {
+  border-color: #00fff7;
+  box-shadow: 0 0 12px #00fff733;
+}
+
+.folder-card {
+  background: #23272e;
+  border: 1.5px solid #39ff14;
+  border-radius: 0.6rem;
+  box-shadow: 0 2px 12px 0 #000a;
+  padding: 1.2rem 0.5rem 1.2rem 1.5rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  margin-bottom: 1.2rem;
+  font-family: 'Fira Mono', monospace;
+  color: #e5e5e5;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.folder-card:hover {
+  border-color: #00fff7;
+  box-shadow: 0 0 12px #00fff733;
+}
+
+input, select, textarea {
+  font-family: 'Fira Mono', monospace;
+  background: #181a1b;
+  color: #39ff14;
+  border: 1.5px solid #39ff14;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: #00fff7;
+  box-shadow: 0 0 0 2px #00fff733;
+  outline: none;
+}
+
+.sidebar {
+  background: #181a1b;
+  border-right: 2px solid #39ff14;
+  color: #39ff14;
+}
+
+::-webkit-input-placeholder { color: #39ff14; opacity: 0.7; }
+::-moz-placeholder { color: #39ff14; opacity: 0.7; }
+:-ms-input-placeholder { color: #39ff14; opacity: 0.7; }
+::placeholder { color: #39ff14; opacity: 0.7; }
+
+.animate-fade-in {
+  animation: fadeIn 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Premium card styles */
+.card {
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 24px 0 rgba(30, 41, 59, 0.08), 0 1.5px 4px 0 rgba(30, 41, 59, 0.04);
+  border: 1px solid #f1f5f9;
+  padding: 2rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.card:hover {
+  box-shadow: 0 8px 32px 0 rgba(30, 41, 59, 0.12), 0 2px 8px 0 rgba(30, 41, 59, 0.06);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background: #2563eb;
+  color: #fff;
+  box-shadow: 0 2px 8px 0 rgba(37, 99, 235, 0.08);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.btn:hover, .btn:focus {
+  background: #1d4ed8;
+  box-shadow: 0 4px 16px 0 rgba(37, 99, 235, 0.12);
+  outline: none;
+  transform: translateY(-1px) scale(1.03);
+}
+.btn-secondary {
+  background: #f1f5f9;
+  color: #2563eb;
+  box-shadow: none;
+}
+.btn-secondary:hover, .btn-secondary:focus {
+  background: #e0e7ef;
+  color: #1d4ed8;
+}
+
+/* Navbar and sidebar */
+.navbar {
+  box-shadow: 0 2px 8px 0 rgba(30, 41, 59, 0.04);
+  background: #fff;
+  border-bottom: 1.5px solid #e5e7eb;
+  z-index: 50;
+}
+.sidebar {
+  box-shadow: 2px 0 8px 0 rgba(30, 41, 59, 0.04);
+  background: #fff;
+  border-right: 1.5px solid #e5e7eb;
+  z-index: 40;
+}
+
+/* Utility for page spacing */
+.page {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+} 

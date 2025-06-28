@@ -35,7 +35,35 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 const path = __importStar(require("path"));
+const fs = __importStar(require("fs"));
 const isDev = !electron_1.app.isPackaged;
+const DATA_PATH = path.join(electron_1.app.getPath('userData'), 'countdown-data.json');
+// File Utilities
+function loadData() {
+    try {
+        if (!fs.existsSync(DATA_PATH)) {
+            const initial = { folders: [], countdowns: [] };
+            fs.writeFileSync(DATA_PATH, JSON.stringify(initial, null, 2));
+            return initial;
+        }
+        const raw = fs.readFileSync(DATA_PATH, 'utf-8');
+        return JSON.parse(raw);
+    }
+    catch (e) {
+        return { folders: [], countdowns: [] };
+    }
+}
+function saveData(data) {
+    fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 2));
+}
+// IPC Handlers
+electron_1.ipcMain.handle('get-data', () => {
+    return loadData();
+});
+electron_1.ipcMain.handle('save-data', (_event, data) => {
+    saveData(data);
+    return true;
+});
 function createWindow() {
     const win = new electron_1.BrowserWindow({
         width: 900,
