@@ -1,0 +1,46 @@
+{
+  "name": "countdown",
+  "version": "1.0.0",
+  "description": "countdown timer for things i am looking forward to",
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && npm run build:main -- --watch & electron .\"",
+    "build:main": "tsc --project tsconfig.main.json",
+    "build": "vite build && npm run build:main && electron-builder",
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donbool/countdown.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/donbool/countdown/issues"
+  },
+  "homepage": "https://github.com/donbool/countdown#readme",
+  "devDependencies": {
+    "@electron/remote": "^2.1.2",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@types/node": "^24.0.6",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.0",
+    "electron": "^37.1.0",
+    "electron-builder": "^26.0.12",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.0",
+    "wait-on": "^8.0.3"
+  },
+  "dependencies": {
+    "luxon": "^3.6.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
