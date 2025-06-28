@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && npm run build:main -- --watch & electron .\"",
     "build:main": "tsc --project tsconfig.main.json",
-    "build": "vite build",
+    "build": "vite build && npm run build:main",
     "dist": "electron-builder",
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
